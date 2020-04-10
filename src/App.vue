@@ -1,36 +1,42 @@
 <template lang='pug'>
   div#app
-    div.head {{msg}}
+    nut-navbar.head(:leftShow="flag" :rightShow="false" @on-click-back="back" ) {{title}}
     div.content 
       router-view
     div#nav
-      router-link(to="/")
-        span(@click='clickHandle("home")') 电影
-      router-link(to="/order")
-        span(@click='clickHandle("order")') 订单
-      router-link(to="/my")
-        span(@click='clickHandle("my")') 我的
+      router-link(to="/") 电影
+      router-link(to="/order") 订单
+      router-link(to="/my") 我的
 </template>
 <script>
 export default {
   data() {
     return {
-      msg: "小莱电影"
+      flag: false,
+      title: "小莱电影",
+      route: [
+        { name: "Home", title: "小莱电影", flag: false },
+        { name: "Order", title: "我的订单", flag: false },
+        { name: "My", title: "我的", flag: false },
+        { name: "Detail", title: "详情页", flag: true },
+        { name: "Theater", title: "影院", flag: true }
+      ]
     };
   },
-  methods: {
-    clickHandle(str) {
-      switch (str) {
-        case "home":
-          this.msg = "小莱电影";
+  watch: {
+    $route(newVal) {
+      for (const item of this.route) {
+        if (newVal.name === item.name) {
+          this.flag = item.flag;
+          this.title = item.title;
           break;
-        case "order":
-          this.msg = "我的订单";
-          break;
-        case "my":
-          this.msg = "我的";
-          break;
+        }
       }
+    }
+  },
+  methods: {
+    back() {
+      this.$router.push("/");
     }
   }
 };
