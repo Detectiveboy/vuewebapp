@@ -17,7 +17,7 @@
                 span {{item.types.join('、')}}
               div.actors
                 span {{item.actor.toString()}}
-              nut-button.buy(@click='clickHandle') 购票
+              nut-button.buy(@click='clickHandle(item)') 购票
 </template>
 
 <script>
@@ -33,13 +33,46 @@ export default {
           score: "9.9分",
           types: ["剧情", "爱情", "战争"],
           actor: ["主演", "黄轩", "苗苗"]
+        },
+        {
+          id: 2,
+          img: "white",
+          name: "泰坦尼克号",
+          screen: ["2D", "IMAX"],
+          score: "9.9分",
+          types: ["剧情", "爱情", "战争"],
+          actor: ["主演", "黄轩", "苗苗"]
+        },
+        {
+          id: 3,
+          img: "black",
+          name: "蜘蛛侠",
+          screen: ["2D", "IMAX"],
+          score: "9.9分",
+          types: ["剧情", "爱情", "战争"],
+          actor: ["主演", "黄轩", "苗苗"]
+        },
+        {
+          id: 4,
+          img: "blue",
+          name: "钢铁侠",
+          screen: ["2D", "IMAX"],
+          score: "9.9分",
+          types: ["剧情", "爱情", "战争"],
+          actor: ["主演", "黄轩", "苗苗"]
         }
       ]
     };
   },
   methods: {
-    clickHandle() {
-      this.$router.push("/detail");
+    clickHandle(item) {
+      this.$router.push({
+        path: "/detail",
+        query: {
+          name: item.name,
+          img: item.img,
+        }
+      });
     }
   },
   beforeCreate() {

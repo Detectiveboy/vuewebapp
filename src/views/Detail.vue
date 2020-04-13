@@ -4,7 +4,7 @@
             nut-row
                 nut-col(:span="8")
                     div.flex-content
-                        div.img
+                        div.img(:style='`background:${img}`')
                 nut-col(:span="16")
                     div(class='flex-content flex-content-right')
                         h4 {{name}}
@@ -14,7 +14,7 @@
                         div.actor {{actor.toString()}}
                         div.date {{date}}
         div.detailMiddle {{text}}
-        div.detailBottom(@click='clickHandle') 立即购买
+        div.detailBottom(@click='clickHandle(name)') 立即购买
 </template>
 <script>
 export default {
@@ -22,6 +22,7 @@ export default {
     return {
       text: "",
       name: "芳华",
+      img: "red",
       star: 5,
       score: "9.5",
       tag: ["剧情", "爱情", "战争"],
@@ -29,13 +30,21 @@ export default {
       date: "2020-04-10大陆"
     };
   },
-  beforeMount() {
+  created() {
+    const obj = this.$route.query;
+    this.name = obj.name;
+    this.img = obj.img;
     this.text =
       "忽冷忽热不是爱，时近时远是备胎，明白这14个字，你的感情会少走很多弯路。真正的爱情，并不是单纯的我爱你，而是遇见你以后，我会更爱我自己，因为最完美的自己，才能配上最好的你。可能每个人都会遇到一个爱而不得的人吧，相比于最初得不到时的哭天抢地，后来的我们渐渐变得平和，开始接受生命里的不可得。所谓爱情，不过是骗骗对方、骗骗自己。运气好的，双方都信了。运气不好不坏的，对方信了、你没信。运气差的，对方没信，你却深信不疑了。我们都已经过了耳听爱情的年纪，再多的甜言蜜语抵不过一碗暴雨后的热姜汤，再深刻的海誓山盟比不上困难来临时，紧紧拉住你的那一双手。";
   },
   methods: {
-    clickHandle() {
-      this.$router.push("/theater",);
+    clickHandle(name) {
+      this.$router.push({
+        path: "/theater",
+        query: {
+          name: name
+        }
+      });
     }
   }
 };
@@ -53,7 +62,6 @@ export default {
       padding: 5px;
       .img {
         height: 100%;
-        background: red;
       }
       .star {
         margin: 10px 0 20px;

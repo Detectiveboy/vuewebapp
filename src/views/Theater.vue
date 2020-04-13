@@ -42,6 +42,10 @@ export default {
         }
       ]
     };
+  },
+  created() {
+    const obj = this.$route.query;
+    this.name = obj.name;
   }
 };
 </script>

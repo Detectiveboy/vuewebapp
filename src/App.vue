@@ -40,9 +40,7 @@ export default {
         if (newVal.name === item) {
           this.footer = false;
           break;
-        } else {
-          this.footer = true;
-        }
+        } else this.footer = true;
       }
     }
   },
