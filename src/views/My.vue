@@ -4,6 +4,7 @@
             span.title
                 label {{item}}
             span.selected-option >
+        nut-button(@click='clickHandle' block) 退出登录
 </template>
 <script>
 export default {
@@ -11,6 +12,11 @@ export default {
     return {
       list: ["我的订单", "优惠卷", "影院会员卡", "想看的电影", "看过的电影"]
     };
+  },
+  methods: {
+    clickHandle() {
+      this.$router.push("/logoin");
+    }
   }
 };
 </script>

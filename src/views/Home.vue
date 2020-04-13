@@ -41,6 +41,10 @@ export default {
     clickHandle() {
       this.$router.push("/detail");
     }
+  },
+  beforeCreate() {
+    const user = localStorage.getItem("user");
+    if (!user) this.$router.push("/logoin");
   }
 };
 </script>

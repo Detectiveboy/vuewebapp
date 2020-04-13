@@ -3,7 +3,7 @@
     nut-navbar.head(:leftShow="flag" :rightShow="false" @on-click-back="back" ) {{title}}
     div.content 
       router-view
-    div#nav
+    div#nav(v-if='footer')
       router-link(to="/") 电影
       router-link(to="/order") 订单
       router-link(to="/my") 我的
@@ -14,13 +14,17 @@ export default {
     return {
       flag: false,
       title: "小莱电影",
+      footer: true,
       route: [
         { name: "Home", title: "小莱电影", flag: false },
         { name: "Order", title: "我的订单", flag: false },
         { name: "My", title: "我的", flag: false },
         { name: "Detail", title: "详情页", flag: true },
-        { name: "Theater", title: "影院", flag: true }
-      ]
+        { name: "Theater", title: "影院", flag: true },
+        { name: "Logoin", title: "登录", flag: false },
+        { name: "Register", title: "注册", flag: false }
+      ],
+      fotArr: ["Logoin", "Detail", "Register"]
     };
   },
   watch: {
@@ -30,6 +34,14 @@ export default {
           this.flag = item.flag;
           this.title = item.title;
           break;
+        }
+      }
+      for (const item of this.fotArr) {
+        if (newVal.name === item) {
+          this.footer = false;
+          break;
+        } else {
+          this.footer = true;
         }
       }
     }
