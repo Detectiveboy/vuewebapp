@@ -22,9 +22,10 @@ export default {
         { name: "Detail", title: "详情页", flag: true },
         { name: "Theater", title: "影院", flag: true },
         { name: "Logoin", title: "登录", flag: false },
-        { name: "Register", title: "注册", flag: false }
+        { name: "Register", title: "注册", flag: false },
+        { name: "PinkSeats", title: "选座", flag: true }
       ],
-      fotArr: ["Logoin", "Detail", "Register"]
+      fotArr: ["Logoin", "Detail", "Register", "PinkSeats"]
     };
   },
   watch: {

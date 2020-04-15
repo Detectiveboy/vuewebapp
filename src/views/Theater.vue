@@ -12,12 +12,12 @@
                         div.flex-content
                             span {{item.types}}
                             br
-                            span {{item.xy}}
+                            span {{item.room}}
                     nut-col(:span="6")
                         div.flex-content {{`${item.price}￥`}}
                     nut-col(:span="6")
                         div.flex-content
-                            nut-button(small) 选择购票 
+                            nut-button(small @click='clickHandle(item)') 选择购票 
 </template>
 <script>
 export default {
@@ -30,14 +30,14 @@ export default {
           id: 1,
           date: "16:16",
           types: "国语3D",
-          xy: "3号厅",
+          room: "3号厅",
           price: 33.5
         },
         {
           id: 2,
           date: "16:16",
           types: "国语3D",
-          xy: "3号厅",
+          room: "3号厅",
           price: 33.5
         }
       ]
@@ -46,6 +46,19 @@ export default {
   created() {
     const obj = this.$route.query;
     this.name = obj.name;
+  },
+  methods: {
+    clickHandle(item) {
+      this.$router.push({
+        path: "/pinkSeats",
+        query: {
+          name: this.name,
+          date: item.date,
+          types: item.types,
+          room: item.room,
+        }
+      });
+    }
   }
 };
 </script>

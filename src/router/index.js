@@ -39,6 +39,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: () => import('../views/Register.vue')
+  },
+  {
+    path: '/pinkSeats',
+    name: 'PinkSeats',
+    component: () => import('../views/PinkSeats.vue')
   }
 ]
 const router = new VueRouter({

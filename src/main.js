@@ -4,7 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import NutUI from '@nutui/nutui';
 import '@nutui/nutui/dist/nutui.css';
-
+import './assets/css/common.css'
 NutUI.install(Vue);
 Vue.config.productionTip = false
 
